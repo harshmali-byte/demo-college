@@ -12,6 +12,7 @@ import {
   Link,
   Container,
 } from "@chakra-ui/react";
+import { colors, glassCard } from "../theme/tokens";
 
 const NAV_LINKS = [
   { label: "Home", href: "#" },
@@ -23,10 +24,10 @@ const NAV_LINKS = [
 ];
 
 const TECH_CARDS = [
-  { label: "AI", color: "#00D4FF" },
-  { label: "Cloud Computing", color: "#00BFA5" },
-  { label: "Cyber Security", color: "#6366F1" },
-  { label: "Data Science", color: "#00D4FF" },
+  { label: "AI", color: colors.accent.cyan },
+  { label: "Cloud Computing", color: colors.accent.teal },
+  { label: "Cyber Security", color: "brand.600" },
+  { label: "Data Science", color: colors.accent.cyan },
 ];
 
 const STATS = [
@@ -51,20 +52,20 @@ const LogoPlaceholder = () => (
       w={{ base: "40px", md: "48px" }}
       h={{ base: "40px", md: "48px" }}
       borderRadius="12px"
-      bg="linear-gradient(135deg, #0B1F4D 0%, #132B67 100%)"
+      bg={colors.gradient.brand}
       align="center"
       justify="center"
       boxShadow="0 4px 20px rgba(11, 31, 77, 0.3)"
     >
       <Text fontSize="xs" fontWeight="800" color="white" letterSpacing="tight">
-        JK
+        KJ
       </Text>
     </Flex>
     <VStack align="flex-start" spacing={0} display={{ base: "none", sm: "flex" }}>
-      <Text fontSize="xs" fontWeight="700" color="#0B1F4D" lineHeight="1.2" letterSpacing="0.02em">
+      <Text fontSize="xs" fontWeight="700" color="brand.500" lineHeight="1.2" letterSpacing="0.02em">
         College of Computer,
       </Text>
-      <Text fontSize="xs" fontWeight="600" color="#132B67" lineHeight="1.2" opacity={0.85}>
+      <Text fontSize="xs" fontWeight="600" color="brand.600" lineHeight="1.2" opacity={0.85}>
         Science & IT
       </Text>
     </VStack>
@@ -153,7 +154,7 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <Box as="section" position="relative" overflow="hidden" bg="#F7FAFC" minH="100vh">
+    <Box as="section" position="relative" overflow="hidden" bg="bg.canvas" minH="100vh">
       <Box
         position="absolute"
         inset={0}
@@ -216,7 +217,7 @@ const HeroSection: React.FC = () => {
         w="6px"
         h="6px"
         borderRadius="full"
-        bg="#00D4FF"
+        bg="accent.cyan"
         boxShadow="0 0 20px rgba(0, 212, 255, 0.6)"
         display={{ base: "none", lg: "block" }}
         pointerEvents="none"
@@ -258,16 +259,16 @@ const HeroSection: React.FC = () => {
                   py={2}
                   fontSize="sm"
                   fontWeight="500"
-                  color="#0F172A"
+                  color="text.primary"
                   borderRadius="lg"
                   _hover={{
-                    color: "#0B1F4D",
-                    bg: "rgba(11, 31, 77, 0.04)",
+                    color: "brand.500",
+                    bg: colors.surface.muted,
                     textDecoration: "none",
                   }}
                   _focusVisible={{
                     outline: "2px solid",
-                    outlineColor: "#00D4FF",
+                    outlineColor: "accent.cyan",
                     outlineOffset: "2px",
                   }}
                   transition="all 0.2s ease"
@@ -283,35 +284,25 @@ const HeroSection: React.FC = () => {
                 icon={<SearchIcon />}
                 variant="ghost"
                 size="sm"
-                color="#0B1F4D"
+                color="brand.500"
                 borderRadius="xl"
-                _hover={{ bg: "rgba(11, 31, 77, 0.06)" }}
+                _hover={{ bg: colors.surface.muted }}
               />
               <Button
                 variant="ghost"
                 size={{ base: "sm", md: "md" }}
                 fontWeight="600"
-                color="#0B1F4D"
+                color="brand.500"
                 borderRadius="xl"
                 display={{ base: "none", sm: "inline-flex" }}
-                _hover={{ bg: "rgba(11, 31, 77, 0.06)" }}
+                _hover={{ bg: colors.surface.muted }}
               >
                 Student Login
               </Button>
               <Button
                 size={{ base: "sm", md: "md" }}
-                fontWeight="700"
-                borderRadius="xl"
-                bg="linear-gradient(135deg, #0B1F4D 0%, #132B67 100%)"
-                color="white"
+                variant="primary"
                 px={{ base: 4, md: 6 }}
-                boxShadow="0 4px 20px rgba(11, 31, 77, 0.25)"
-                _hover={{
-                  transform: "translateY(-1px)",
-                  boxShadow: "0 8px 28px rgba(11, 31, 77, 0.35)",
-                }}
-                _active={{ transform: "translateY(0)" }}
-                transition="all 0.25s ease"
               >
                 Apply Now
               </Button>
@@ -334,13 +325,13 @@ const HeroSection: React.FC = () => {
                 borderRadius="full"
                 bg="rgba(255, 255, 255, 0.6)"
                 backdropFilter="blur(12px)"
-                border="1px solid rgba(0, 212, 255, 0.3)"
+                border={`1px solid ${colors.border.accent}`}
                 boxShadow="0 0 24px rgba(0, 212, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.8)"
                 sx={{ WebkitBackdropFilter: "blur(12px)" }}
               >
                 <HStack spacing={2}>
-                  <Box w="8px" h="8px" borderRadius="full" bg="#00D4FF" boxShadow="0 0 12px rgba(0, 212, 255, 0.8)" />
-                  <Text fontSize="sm" fontWeight="600" color="#0B1F4D" letterSpacing="0.02em">
+                  <Box w="8px" h="8px" borderRadius="full" bg="accent.cyan" boxShadow="0 0 12px rgba(0, 212, 255, 0.8)" />
+                  <Text fontSize="sm" fontWeight="600" color="brand.500" letterSpacing="0.02em">
                     Admissions Open 2026-27
                   </Text>
                 </HStack>
@@ -351,7 +342,7 @@ const HeroSection: React.FC = () => {
                 fontSize={{ base: "2.5rem", sm: "3rem", md: "3.75rem", lg: "4.5rem", xl: "4.75rem" }}
                 fontWeight="800"
                 lineHeight={{ base: "1.15", md: "1.1" }}
-                color="#0F172A"
+                color="text.primary"
                 letterSpacing="-0.03em"
               >
                 Empowering Modern
@@ -359,7 +350,7 @@ const HeroSection: React.FC = () => {
                 Minds with{" "}
                 <Text
                   as="span"
-                  bgGradient="linear(to-r, #00D4FF, #00BFA5)"
+                  bgGradient={`linear(to-r, ${colors.accent.cyan}, ${colors.accent.teal})`}
                   bgClip="text"
                   sx={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
                 >
@@ -368,7 +359,7 @@ const HeroSection: React.FC = () => {
                 &{" "}
                 <Text
                   as="span"
-                  bgGradient="linear(to-r, #00D4FF, #00BFA5)"
+                  bgGradient={`linear(to-r, ${colors.accent.cyan}, ${colors.accent.teal})`}
                   bgClip="text"
                   sx={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
                 >
@@ -378,12 +369,12 @@ const HeroSection: React.FC = () => {
 
               <Text
                 fontSize={{ base: "md", md: "lg" }}
-                color="#475569"
+                color="text.secondary"
                 lineHeight="1.75"
                 maxW="540px"
                 fontWeight="400"
               >
-                Shape your future at JK Institute with industry-aligned curriculum, cutting-edge labs,
+                Shape your future at KJ Institute with industry-aligned curriculum, cutting-edge labs,
                 and a vibrant innovation ecosystem. From AI to cloud computing, we prepare you for
                 tomorrow&apos;s careers with 98% placement support and partnerships with leading
                 global recruiters.
@@ -392,39 +383,25 @@ const HeroSection: React.FC = () => {
               <HStack spacing={4} flexWrap="wrap" pt={2}>
                 <Button
                   size="lg"
-                  fontWeight="700"
+                  variant="primary"
                   borderRadius="2xl"
                   px={8}
                   h="56px"
-                  bg="linear-gradient(135deg, #0B1F4D 0%, #132B67 100%)"
-                  color="white"
-                  boxShadow="0 8px 32px rgba(11, 31, 77, 0.3)"
-                  _hover={{
-                    transform: "translateY(-2px)",
-                    boxShadow: "0 12px 40px rgba(11, 31, 77, 0.4)",
-                  }}
+                  _hover={{ transform: "translateY(-2px)" }}
                   _active={{ transform: "translateY(0)" }}
-                  transition="all 0.3s ease"
                 >
                   Apply Online
                 </Button>
                 <Button
                   size="lg"
-                  variant="outline"
+                  variant="glass"
                   fontWeight="600"
                   borderRadius="2xl"
                   px={8}
                   h="56px"
-                  borderColor="rgba(11, 31, 77, 0.2)"
-                  color="#0B1F4D"
-                  bg="rgba(255, 255, 255, 0.5)"
-                  backdropFilter="blur(8px)"
                   _hover={{
-                    bg: "rgba(255, 255, 255, 0.8)",
-                    borderColor: "#00D4FF",
                     transform: "translateY(-2px)",
                   }}
-                  transition="all 0.3s ease"
                 >
                   Explore Courses
                 </Button>
@@ -440,28 +417,24 @@ const HeroSection: React.FC = () => {
                   <Box
                     key={stat.label}
                     p={{ base: 4, md: 5 }}
+                    {...glassCard}
                     borderRadius="2xl"
-                    bg="rgba(255, 255, 255, 0.55)"
-                    backdropFilter="blur(12px)"
-                    border="1px solid rgba(255, 255, 255, 0.6)"
-                    boxShadow="0 4px 24px rgba(11, 31, 77, 0.06)"
                     _hover={{
                       transform: "translateY(-4px)",
                       boxShadow: "0 12px 32px rgba(11, 31, 77, 0.1)",
                     }}
                     transition="all 0.3s ease"
-                    sx={{ WebkitBackdropFilter: "blur(12px)" }}
                   >
                     <Text
                       fontSize={{ base: "xl", md: "2xl" }}
                       fontWeight="800"
-                      bgGradient="linear(to-r, #0B1F4D, #132B67)"
+                      bgGradient={`linear(to-r, ${colors.brand.primary}, ${colors.brand.secondary})`}
                       bgClip="text"
                       sx={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
                     >
                       {stat.value}
                     </Text>
-                    <Text fontSize="xs" fontWeight="500" color="#64748B" mt={1}>
+                    <Text fontSize="xs" fontWeight="500" color="text.muted" mt={1}>
                       {stat.label}
                     </Text>
                   </Box>
@@ -551,7 +524,7 @@ const HeroSection: React.FC = () => {
                           boxShadow={`0 0 10px ${tech.color}`}
                           flexShrink={0}
                         />
-                        <Text fontSize="xs" fontWeight="600" color="#0F172A" noOfLines={1}>
+                        <Text fontSize="xs" fontWeight="600" color="text.primary" noOfLines={1}>
                           {tech.label}
                         </Text>
                       </Flex>
@@ -576,7 +549,7 @@ const HeroSection: React.FC = () => {
                 _hover={{ transform: "translateY(-4px)" }}
                 transition="transform 0.3s ease"
               >
-                <Text fontSize="2xs" fontWeight="700" color="#64748B" textTransform="uppercase" letterSpacing="wider" mb={2}>
+                <Text fontSize="2xs" fontWeight="700" color="text.muted" textTransform="uppercase" letterSpacing="wider" mb={2}>
                   Top Recruiters
                 </Text>
                 <Flex flexWrap="wrap" gap={2}>
@@ -586,10 +559,10 @@ const HeroSection: React.FC = () => {
                       px={2.5}
                       py={1}
                       borderRadius="lg"
-                      bg="rgba(11, 31, 77, 0.06)"
-                      border="1px solid rgba(11, 31, 77, 0.08)"
+                      bg={colors.surface.muted}
+                      border={`1px solid ${colors.border.light}`}
                     >
-                      <Text fontSize="2xs" fontWeight="700" color="#0B1F4D">
+                      <Text fontSize="2xs" fontWeight="700" color="brand.500">
                         {company}
                       </Text>
                     </Box>
@@ -619,7 +592,7 @@ const HeroSection: React.FC = () => {
                 <Text
                   fontSize={{ base: "2xl", md: "3xl" }}
                   fontWeight="800"
-                  bgGradient="linear(to-r, #00D4FF, #00BFA5)"
+                  bgGradient={`linear(to-r, ${colors.accent.cyan}, ${colors.accent.teal})`}
                   bgClip="text"
                   sx={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
                 >

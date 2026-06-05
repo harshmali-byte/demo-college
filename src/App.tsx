@@ -5,6 +5,8 @@ import WelcomePage from "./pages/WelcomePage";
 import FeaturedCoursesPage from "./pages/FeaturedCoursesPage";
 import AdmissionPage from "./pages/AdmissionPage";
 import ContactPage from "./pages/ContactPage";
+import DepartmentsPage from "./pages/DepartmentsPage";
+import DepartmentDetailPage from "./pages/DepartmentDetailPage";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<WelcomePage />} />
+        <Route path="/departments" element={<DepartmentsPage />} />
+        <Route path="/departments/:slug" element={<DepartmentDetailPage />} />
         <Route path="/courses" element={<FeaturedCoursesPage />} />
         <Route path="/admission" element={<AdmissionPage />} />
         <Route path="/contact" element={<ContactPage />} />

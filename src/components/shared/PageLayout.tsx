@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Box } from "@chakra-ui/react";
-import TopBar from "./TopBar";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -9,10 +8,11 @@ type PageLayoutProps = {
 };
 
 const PageLayout = ({ children }: PageLayoutProps) => (
-  <Box bg="#F7FAFC" minH="100vh">
-    <TopBar />
+  <Box bg="bg.canvas" minH="100vh" display="flex" flexDirection="column">
     <Navbar />
-    {children}
+    <Box as="main" flex="1">
+      {children}
+    </Box>
     <Footer />
   </Box>
 );

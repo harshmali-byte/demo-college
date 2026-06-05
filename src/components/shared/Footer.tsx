@@ -1,14 +1,12 @@
 import type { ReactNode } from "react";
 import {
   Box,
-  Container,
   Grid,
   GridItem,
   Text,
   Link,
   VStack,
   HStack,
-  Flex,
   IconButton,
   SimpleGrid,
 } from "@chakra-ui/react";
@@ -21,12 +19,13 @@ import {
   SUPPORT_LINKS,
   SOCIAL_LINKS,
 } from "../../data/siteContent";
+import { colors, layout } from "../../theme/tokens";
 import SocialIcon from "./SocialIcon";
-
-const ACCENT = "#FFB300";
+import KJLogo from "./KJLogo";
+import PageContainer from "./PageContainer";
 
 const ChevronBullet = () => (
-  <Text as="span" color={ACCENT} fontSize="xs" fontWeight="700" mr={2} flexShrink={0}>
+  <Text as="span" color="accent.gold" fontSize="xs" fontWeight="700" mr={2} flexShrink={0}>
     ›
   </Text>
 );
@@ -35,7 +34,7 @@ const FooterLink = ({ label, href }: { label: string; href: string }) => {
   const style = {
     fontSize: "sm",
     color: "rgba(255,255,255,0.85)",
-    _hover: { color: ACCENT, textDecoration: "none" },
+    _hover: { color: "accent.gold", textDecoration: "none" },
     transition: "color 0.2s ease",
     display: "flex",
     alignItems: "center",
@@ -91,7 +90,7 @@ const ContactItem = ({
 
   const content = (
     <HStack align="flex-start" spacing={3}>
-      <Box as="svg" w="16px" h="16px" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2" flexShrink={0} mt={1}>
+      <Box as="svg" w="16px" h="16px" viewBox="0 0 24 24" fill="none" stroke={colors.accent.gold} strokeWidth="2" flexShrink={0} mt={1}>
         {icons[icon]}
       </Box>
       <Text fontSize="sm" color="rgba(255,255,255,0.85)" lineHeight="1.7">
@@ -115,7 +114,7 @@ const Footer = () => (
   <Box
     as="footer"
     id="contact"
-    bg="#051d3b"
+    bg="brand.800"
     color="white"
     position="relative"
     overflow="hidden"
@@ -133,27 +132,14 @@ const Footer = () => (
       pointerEvents="none"
     />
 
-    <Container maxW="1400px" px={{ base: 4, md: 6, lg: 8 }} py={{ base: 12, md: 16 }}>
+    <PageContainer py={layout.sectionPyCompact}>
       <Grid
         templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "1.4fr 1fr 1fr 1.2fr" }}
-        gap={{ base: 10, md: 12, lg: 10 }}
+        gap={layout.pageGridGap}
       >
         <GridItem>
           <HStack spacing={4} mb={6} align="center">
-            <Flex
-              w="56px"
-              h="56px"
-              borderRadius="full"
-              bg="rgba(255,255,255,0.08)"
-              border="2px solid rgba(255,255,255,0.15)"
-              align="center"
-              justify="center"
-              flexShrink={0}
-            >
-              <Text fontSize="2xs" fontWeight="800" color="white" textAlign="center" lineHeight="1.2">
-                JK
-              </Text>
-            </Flex>
+            <KJLogo size="48px" filter="brightness(1.05)" />
             <Text
               fontSize={{ base: "lg", md: "xl" }}
               fontWeight="800"
@@ -183,7 +169,7 @@ const Footer = () => (
                 borderRadius="full"
                 bg="rgba(255,255,255,0.1)"
                 border="1px solid rgba(255,255,255,0.12)"
-                _hover={{ bg: "rgba(255, 179, 0, 0.2)", borderColor: ACCENT, color: ACCENT }}
+                _hover={{ bg: "rgba(255, 179, 0, 0.2)", borderColor: "accent.gold", color: "accent.gold" }}
               />
             ))}
           </SimpleGrid>
@@ -218,7 +204,7 @@ const Footer = () => (
                 href="#"
                 fontSize="sm"
                 color="rgba(255,255,255,0.85)"
-                _hover={{ color: ACCENT, textDecoration: "none" }}
+                _hover={{ color: "accent.gold", textDecoration: "none" }}
                 transition="color 0.2s ease"
                 display="flex"
                 alignItems="center"
@@ -252,35 +238,7 @@ const Footer = () => (
           </VStack>
         </GridItem>
       </Grid>
-    </Container>
-
-    <Box bg="#031428" borderTop="1px solid rgba(255,255,255,0.06)">
-      <Container maxW="1400px" px={{ base: 4, md: 6, lg: 8 }} py={4}>
-        <Flex justify="space-between" align="center" gap={4}>
-          <Text fontSize="sm" color="rgba(255,255,255,0.85)">
-            {COLLEGE.copyrightText}
-          </Text>
-          <IconButton
-            aria-label="Back to top"
-            icon={
-              <Box as="svg" w="16px" h="16px" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-                <polyline points="18 15 12 9 6 15" />
-              </Box>
-            }
-            size="sm"
-            w="36px"
-            h="36px"
-            minW="36px"
-            borderRadius="md"
-            bg={ACCENT}
-            color="white"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            _hover={{ bg: "#FF8F00", transform: "translateY(-2px)" }}
-            transition="all 0.2s ease"
-          />
-        </Flex>
-      </Container>
-    </Box>
+    </PageContainer>
   </Box>
 );
 

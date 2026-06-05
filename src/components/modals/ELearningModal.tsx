@@ -10,8 +10,10 @@ import {
   Flex,
   IconButton,
   Link,
+  Button,
 } from "@chakra-ui/react";
 import { ELEARNING_MODAL } from "../../data/modalContent";
+import { colors } from "../../theme/tokens";
 
 type ELearningModalProps = {
   isOpen: boolean;
@@ -23,7 +25,7 @@ const PlatformIcon = ({ name }: { name: string }) => (
     w="72px"
     h="72px"
     borderRadius="20px"
-    bg={name === "eGuru" ? "linear-gradient(135deg, #1E88E5, #FF8F00)" : "linear-gradient(135deg, #1565C0, #00BFA5)"}
+    bg={name === "eGuru" ? colors.gradient.gold : colors.gradient.brand}
     align="center"
     justify="center"
     boxShadow="0 8px 24px rgba(11,31,77,0.2)"
@@ -65,10 +67,10 @@ const ELearningModal = ({ isOpen, onClose }: ELearningModalProps) => (
         size="sm"
         borderRadius="full"
         bg="rgba(255,255,255,0.9)"
-        color="#0B1F4D"
+        color="brand.500"
         boxShadow="0 4px 12px rgba(0,0,0,0.1)"
         onClick={onClose}
-        _hover={{ bg: "#FFB300", transform: "rotate(90deg)" }}
+        _hover={{ bg: "accent.gold", transform: "rotate(90deg)" }}
         transition="all 0.3s"
       />
 
@@ -76,7 +78,7 @@ const ELearningModal = ({ isOpen, onClose }: ELearningModalProps) => (
         <Text
           fontSize={{ base: "lg", md: "xl" }}
           fontWeight="800"
-          color="#0B1F4D"
+          color="brand.500"
           textAlign="center"
           mb={8}
           lineHeight="1.4"
@@ -91,7 +93,7 @@ const ELearningModal = ({ isOpen, onClose }: ELearningModalProps) => (
               p={6}
               borderRadius="24px"
               bg="rgba(255,255,255,0.8)"
-              border="1px solid rgba(11,31,77,0.08)"
+              border={`1px solid ${colors.border.light}`}
               boxShadow="0 8px 32px rgba(11,31,77,0.06)"
               _hover={{
                 transform: "translateY(-4px)",
@@ -111,7 +113,7 @@ const ELearningModal = ({ isOpen, onClose }: ELearningModalProps) => (
                 >
                   {platform.name}
                 </Text>
-                <Text fontSize="sm" fontWeight="500" color="#64748B" textAlign="center">
+                <Text fontSize="sm" fontWeight="500" color="text.muted" textAlign="center">
                   {platform.tagline}
                 </Text>
                 <Link
@@ -129,22 +131,17 @@ const ELearningModal = ({ isOpen, onClose }: ELearningModalProps) => (
         </VStack>
 
         <HStack justify="center" mt={8}>
-          <Box
-            as="button"
+          <Button
+            variant="outline"
             px={10}
             py={3}
-            borderRadius="xl"
             fontWeight="700"
             fontSize="sm"
-            color="#0B1F4D"
-            border="2px solid rgba(11,31,77,0.15)"
-            bg="white"
             onClick={onClose}
-            _hover={{ bg: "#FFB300", borderColor: "#FFB300" }}
-            transition="all 0.25s"
+            _hover={{ bg: "accent.gold", borderColor: "accent.gold" }}
           >
             Close
-          </Box>
+          </Button>
         </HStack>
       </ModalBody>
     </ModalContent>

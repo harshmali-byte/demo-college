@@ -1,26 +1,28 @@
+import { colors } from "../theme/tokens";
+
 export const WELCOME_CONTENT = {
   paragraphs: [
-    "Welcome to the College of Computer, Science & Information Technology (JK), Junagadh — a premier institution dedicated to nurturing talent, fostering innovation, and shaping future-ready professionals.",
-    "At JK, we believe every student possesses unique academic potential. Our mission is to unlock that potential through quality education, hands-on learning, and a supportive campus environment that encourages growth at every step.",
+    "Welcome to the College of Computer, Science & Information Technology (KJ), Junagadh — a premier institution dedicated to nurturing talent, fostering innovation, and shaping future-ready professionals.",
+    "At KJ, we believe every student possesses unique academic potential. Our mission is to unlock that potential through quality education, hands-on learning, and a supportive campus environment that encourages growth at every step.",
     "Beyond academics, we emphasize moral character, discipline, and ethical values — preparing students not only for successful careers but also for responsible citizenship in a rapidly evolving world.",
     "Our global-standard education ecosystem, state-of-the-art laboratories, experienced faculty, and industry-aligned curriculum create an environment where students thrive, innovate, and achieve excellence.",
   ],
   trustees: [
-    { name: "Dr. D. G. Makadia", role: "Managing Trustee", color: "#1E88E5" },
-    { name: "Mr. G. R. Kansagra", role: "Trustee & Director", color: "#43A047" },
-    { name: "Dr. H. L. Kansagra", role: "Trustee", color: "#00897B" },
-    { name: "Dr. G. T. Ladani", role: "Trustee", color: "#FB8C00" },
-    { name: "Mr. V. M. Vaishnani", role: "Trustee", color: "#78909C" },
+    { name: "Dr. D. G. Makadia", role: "Managing Trustee", color: colors.brand.primary },
+    { name: "Mr. G. R. Kansagra", role: "Trustee & Director", color: colors.brand.secondary },
+    { name: "Dr. H. L. Kansagra", role: "Trustee", color: colors.accent.teal },
+    { name: "Dr. G. T. Ladani", role: "Trustee", color: colors.accent.gold },
+    { name: "Mr. V. M. Vaishnani", role: "Trustee", color: colors.brand.tertiary },
   ],
   quickLinks: [
     { label: "Events", image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80&auto=format&fit=crop" },
-    { label: "Rankers", image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80&auto=format&fit=crop" },
+    { label: "Rankers", image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80&auto=format&fit=crop" },
     { label: "Alumni", image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80&auto=format&fit=crop" },
   ],
   management: [
     { name: "Dr. D. G. Makadia", role: "Managing Trustee (SIET)", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80&auto=format&fit=crop" },
     { name: "Mr. G. R. Kansagra", role: "Trustee & Director (SIET)", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80&auto=format&fit=crop" },
-    { name: "Dr. H. L. Kansagra", role: "Trustee (SIET)", image: "https://images.unsplash.com/photo-1519080108754-10ce139adf1e?w=400&q=80&auto=format&fit=crop" },
+    { name: "Dr. H. L. Kansagra", role: "Trustee (SIET)", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80&auto=format&fit=crop" },
     { name: "Dr. G. T. Ladani", role: "Trustee (SIET)", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&auto=format&fit=crop" },
     { name: "Mr. V. M. Vaishnani", role: "Trustee (SIET)", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80&auto=format&fit=crop" },
   ],
@@ -51,15 +53,15 @@ export const POPULAR_PAGES_ADMISSION = [
 ];
 
 export const DEPARTMENTS_HOME = [
-  { label: "IT Department", image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa37?w=400&q=80&auto=format&fit=crop" },
-  { label: "Bioscience Department", image: "https://images.unsplash.com/photo-1530026405186-ed07f4a203ba?w=400&q=80&auto=format&fit=crop" },
-  { label: "Chemistry Department", image: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&q=80&auto=format&fit=crop" },
+  { label: "IT Department", image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&q=80&auto=format&fit=crop", href: "/departments/it" },
+  { label: "Bioscience Department", image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=400&q=80&auto=format&fit=crop", href: "/departments/bioscience" },
+  { label: "Chemistry Department", image: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&q=80&auto=format&fit=crop", href: "/departments/chemistry" },
 ];
 
 export const DEPARTMENTS_ADMISSION = [
-  { label: "IT Department", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80&auto=format&fit=crop" },
-  { label: "Commerce Department", image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&q=80&auto=format&fit=crop" },
-  { label: "Chemistry Department", image: "https://images.unsplash.com/photo-1532187863486-abf9db5811c6?w=400&q=80&auto=format&fit=crop" },
+  { label: "IT Department", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80&auto=format&fit=crop", href: "/departments/it" },
+  { label: "Bioscience Department", image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=400&q=80&auto=format&fit=crop", href: "/departments/bioscience" },
+  { label: "Chemistry Department", image: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400&q=80&auto=format&fit=crop", href: "/departments/chemistry" },
 ];
 
 export const ADMISSION_ELIGIBILITY = [
@@ -101,4 +103,4 @@ export const ADMISSION_DOCUMENTS = [
   "Passport size photographs.",
 ];
 
-export const CONTACT_WEBSITES = ["www.jk.edu.in", "www.jk.co.in"];
+export const CONTACT_WEBSITES = ["www.kj.edu.in", "www.kj.co.in"];

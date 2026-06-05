@@ -2,7 +2,6 @@ import PageLayout from "../components/shared/PageLayout";
 import FirstVisitModals from "../components/modals/FirstVisitModals";
 import HomeHero from "../components/home/HomeHero";
 import {
-  PlatformSection,
   AboutSection,
   MissionSection,
   CoursesSection,
@@ -16,7 +15,6 @@ const HomePage = () => (
   <PageLayout>
     <FirstVisitModals />
     <HomeHero />
-    <PlatformSection />
     <AboutSection />
     <MissionSection />
     <CoursesSection />

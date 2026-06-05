@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Box,
-  Container,
   Grid,
   GridItem,
   Text,
@@ -17,8 +16,11 @@ import {
 } from "@chakra-ui/react";
 import PageLayout from "../components/shared/PageLayout";
 import PageBanner from "../components/shared/PageBanner";
+import { PAGE_BANNERS } from "../data/bannerContent";
+import PageContainer from "../components/shared/PageContainer";
 import { CONTACT_WEBSITES } from "../data/pageContent";
 import { CONTACT } from "../data/siteContent";
+import { colors, layout } from "../theme/tokens";
 
 const ContactPage = () => {
   const toast = useToast();
@@ -40,29 +42,22 @@ const ContactPage = () => {
   const inputStyle = {
     borderRadius: "xl",
     bg: "rgba(255,255,255,0.8)",
-    border: "1px solid rgba(11, 31, 77, 0.1)",
-    _focus: { borderColor: "#00D4FF", boxShadow: "0 0 0 1px #00D4FF" },
-    _hover: { borderColor: "rgba(11, 31, 77, 0.2)" },
+    border: `1px solid ${colors.border.light}`,
+    _focus: { borderColor: "accent.cyan", boxShadow: `0 0 0 1px ${colors.accent.cyan}` },
+    _hover: { borderColor: colors.border.medium },
   };
 
   return (
     <PageLayout>
-      <PageBanner
-        title="Contact"
-        bgImage="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600&q=80&auto=format&fit=crop"
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Contact" },
-        ]}
-      />
+      <PageBanner {...PAGE_BANNERS.contact} />
 
-      <Container maxW="1400px" px={{ base: 4, md: 6, lg: 8 }} py={{ base: 10, md: 14 }}>
+      <PageContainer py={layout.pagePy}>
         <Box
           borderRadius="28px"
           overflow="hidden"
           bg="rgba(255,255,255,0.75)"
           backdropFilter="blur(14px)"
-          border="1px solid rgba(255,255,255,0.6)"
+          border={`1px solid ${colors.surface.cardBorder}`}
           boxShadow="0 16px 48px rgba(11, 31, 77, 0.08)"
           sx={{ WebkitBackdropFilter: "blur(14px)" }}
         >
@@ -80,38 +75,38 @@ const ContactPage = () => {
                     w="48px"
                     h="48px"
                     borderRadius="full"
-                    bg="#FFB300"
+                    bg="accent.gold"
                     align="center"
                     justify="center"
                     flexShrink={0}
                   >
-                    <Box as="svg" w="22px" h="22px" viewBox="0 0 24 24" fill="none" stroke="#0B1F4D" strokeWidth="2">
+                    <Box as="svg" w="22px" h="22px" viewBox="0 0 24 24" fill="none" stroke={colors.brand.primary} strokeWidth="2">
                       <path d="M12 20h9" />
                       <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
                     </Box>
                   </Flex>
                   <VStack align="flex-start" spacing={0}>
-                    <Text fontSize="sm" fontWeight="700" color="#0B1F4D">
+                    <Text fontSize="sm" fontWeight="700" color="brand.500">
                       Your Comments are Much Appreciated
                     </Text>
-                    <Text fontSize="xs" color="#64748B">
+                    <Text fontSize="xs" color="text.muted">
                       Feedback & Suggestions
                     </Text>
                   </VStack>
                 </HStack>
               </Box>
 
-              <Text fontSize="xs" fontWeight="600" color="#FFB300" textTransform="uppercase" letterSpacing="wider" mb={1}>
+              <Text fontSize="xs" fontWeight="600" color="accent.gold" textTransform="uppercase" letterSpacing="wider" mb={1}>
                 Contact Us / Feedback
               </Text>
-              <Text fontSize="lg" fontWeight="700" color="#0B1F4D" mb={6}>
+              <Text fontSize="lg" fontWeight="700" color="brand.500" mb={6}>
                 Your suggestions are welcome. Keep in touch...
               </Text>
 
               <Box as="form" onSubmit={handleSubmit}>
                 <VStack spacing={4} align="stretch">
                   <FormControl isRequired>
-                    <FormLabel fontSize="sm" fontWeight="600" color="#0F172A">Full Name</FormLabel>
+                    <FormLabel fontSize="sm" fontWeight="600" color="text.primary">Full Name</FormLabel>
                     <Input
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -120,7 +115,7 @@ const ContactPage = () => {
                     />
                   </FormControl>
                   <FormControl isRequired>
-                    <FormLabel fontSize="sm" fontWeight="600" color="#0F172A">Email</FormLabel>
+                    <FormLabel fontSize="sm" fontWeight="600" color="text.primary">Email</FormLabel>
                     <Input
                       type="email"
                       value={form.email}
@@ -131,7 +126,7 @@ const ContactPage = () => {
                   </FormControl>
                   <Grid templateColumns={{ base: "1fr", sm: "1fr 1fr" }} gap={4}>
                     <FormControl>
-                      <FormLabel fontSize="sm" fontWeight="600" color="#0F172A">City</FormLabel>
+                      <FormLabel fontSize="sm" fontWeight="600" color="text.primary">City</FormLabel>
                       <Input
                         value={form.city}
                         onChange={(e) => setForm({ ...form, city: e.target.value })}
@@ -140,7 +135,7 @@ const ContactPage = () => {
                       />
                     </FormControl>
                     <FormControl isRequired>
-                      <FormLabel fontSize="sm" fontWeight="600" color="#0F172A">Mobile No.</FormLabel>
+                      <FormLabel fontSize="sm" fontWeight="600" color="text.primary">Mobile No.</FormLabel>
                       <Input
                         value={form.mobile}
                         onChange={(e) => setForm({ ...form, mobile: e.target.value })}
@@ -150,7 +145,7 @@ const ContactPage = () => {
                     </FormControl>
                   </Grid>
                   <FormControl isRequired>
-                    <FormLabel fontSize="sm" fontWeight="600" color="#0F172A">Message</FormLabel>
+                    <FormLabel fontSize="sm" fontWeight="600" color="text.primary">Message</FormLabel>
                     <Textarea
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -162,14 +157,10 @@ const ContactPage = () => {
                   <Button
                     type="submit"
                     size="lg"
-                    fontWeight="700"
-                    borderRadius="xl"
-                    bg="#FFB300"
-                    color="#0B1F4D"
-                    _hover={{ bg: "#FF8F00", transform: "translateY(-1px)" }}
-                    transition="all 0.2s"
+                    variant="gold"
                     alignSelf="flex-start"
                     px={10}
+                    _hover={{ transform: "translateY(-1px)" }}
                   >
                     Send
                   </Button>
@@ -180,12 +171,12 @@ const ContactPage = () => {
             <GridItem
               p={{ base: 6, md: 8, lg: 10 }}
               bg="linear-gradient(180deg, rgba(11,31,77,0.04) 0%, rgba(0,212,255,0.04) 100%)"
-              borderLeft={{ lg: "1px solid rgba(11,31,77,0.06)" }}
+              borderLeft={{ lg: `1px solid ${colors.border.light}` }}
             >
-              <Text fontSize="xl" fontWeight="800" color="#0B1F4D" mb={2}>
+              <Text fontSize="xl" fontWeight="800" color="brand.500" mb={2}>
                 Address
               </Text>
-              <Text fontSize="sm" color="#64748B" mb={8}>
+              <Text fontSize="sm" color="text.muted" mb={8}>
                 Please don&apos;t hesitate to contact us.
               </Text>
 
@@ -198,28 +189,26 @@ const ContactPage = () => {
             </GridItem>
           </Grid>
         </Box>
-      </Container>
+      </PageContainer>
 
-      <Box px={{ base: 4, md: 6, lg: 8 }} pb={{ base: 10, md: 14 }}>
-        <Container maxW="1400px" p={0}>
+      <PageContainer pb={layout.pagePy} pt={0}>
           <Box
             borderRadius="24px"
             overflow="hidden"
             h={{ base: "280px", md: "400px" }}
             boxShadow="0 16px 48px rgba(11, 31, 77, 0.1)"
-            border="1px solid rgba(11, 31, 77, 0.08)"
+            border={`1px solid ${colors.border.light}`}
           >
             <Box
               as="iframe"
-              title="JK College Location"
-              src="https://maps.google.com/maps?q=JK+College+Junagadh&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              title="KJ College Location"
+              src="https://maps.google.com/maps?q=KJ+College+Junagadh&t=&z=15&ie=UTF8&iwloc=&output=embed"
               w="100%"
               h="100%"
               border="none"
             />
           </Box>
-        </Container>
-      </Box>
+      </PageContainer>
     </PageLayout>
   );
 };
@@ -256,17 +245,17 @@ const ContactRow = ({ icon, text }: { icon: string; text: string }) => {
         w="44px"
         h="44px"
         borderRadius="full"
-        bg="rgba(11, 31, 77, 0.06)"
-        border="1px solid rgba(11, 31, 77, 0.08)"
+        bg={colors.surface.muted}
+        border={`1px solid ${colors.border.light}`}
         align="center"
         justify="center"
         flexShrink={0}
       >
-        <Box as="svg" w="18px" h="18px" viewBox="0 0 24 24" fill="none" stroke="#0B1F4D" strokeWidth="2">
+        <Box as="svg" w="18px" h="18px" viewBox="0 0 24 24" fill="none" stroke={colors.brand.primary} strokeWidth="2">
           {icons[icon]}
         </Box>
       </Flex>
-      <Text fontSize="sm" color="#475569" lineHeight="1.7" pt={2}>
+      <Text fontSize="sm" color="text.secondary" lineHeight="1.7" pt={2}>
         {text}
       </Text>
     </HStack>
