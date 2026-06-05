@@ -1,15 +1,17 @@
-import { Box, Container, Flex, HStack, Link, Text, IconButton } from "@chakra-ui/react";
+import { Box, Flex, HStack, Link, Text, IconButton } from "@chakra-ui/react";
 import { CONTACT, SOCIAL_LINKS } from "../../data/siteContent";
+import { colors } from "../../theme/tokens";
 import SocialIcon from "./SocialIcon";
+import PageContainer from "./PageContainer";
 
 const TopBar = () => (
   <Box
-    bg="linear-gradient(135deg, #0B1F4D 0%, #132B67 100%)"
+    bg={colors.gradient.brand}
     color="white"
     py={2}
     display={{ base: "none", md: "block" }}
   >
-    <Container maxW="1400px" px={{ base: 4, md: 6, lg: 8 }}>
+    <PageContainer>
       <Flex justify="space-between" align="center" gap={4}>
         <HStack spacing={6} fontSize="xs" fontWeight="500" opacity={0.9} flexWrap="wrap">
           <HStack spacing={2}>
@@ -17,7 +19,7 @@ const TopBar = () => (
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
               <polyline points="22,6 12,13 2,6" />
             </Box>
-            <Link href={`mailto:${CONTACT.email}`} _hover={{ color: "#00D4FF", textDecoration: "none" }}>
+            <Link href={`mailto:${CONTACT.email}`} _hover={{ color: "accent.cyan", textDecoration: "none" }}>
               {CONTACT.email}
             </Link>
           </HStack>
@@ -40,12 +42,12 @@ const TopBar = () => (
               variant="ghost"
               color="white"
               borderRadius="lg"
-              _hover={{ bg: "rgba(255,255,255,0.12)", color: "#00D4FF" }}
+              _hover={{ bg: "rgba(255,255,255,0.12)", color: "accent.cyan" }}
             />
           ))}
         </HStack>
       </Flex>
-    </Container>
+    </PageContainer>
   </Box>
 );
 

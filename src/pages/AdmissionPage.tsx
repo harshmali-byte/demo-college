@@ -1,8 +1,5 @@
 import {
   Box,
-  Container,
-  Grid,
-  GridItem,
   Text,
   VStack,
   HStack,
@@ -14,39 +11,33 @@ import {
 } from "@chakra-ui/react";
 import PageLayout from "../components/shared/PageLayout";
 import PageBanner from "../components/shared/PageBanner";
+import { PAGE_BANNERS } from "../data/bannerContent";
 import PageSidebar from "../components/shared/PageSidebar";
+import PageContent from "../components/shared/PageContent";
 import {
   ADMISSION_ELIGIBILITY,
   ADMISSION_DOCUMENTS,
   POPULAR_PAGES_ADMISSION,
   DEPARTMENTS_ADMISSION,
 } from "../data/pageContent";
+import { colors, glassCard, layout } from "../theme/tokens";
 
 const CheckIcon = () => (
-  <Box as="svg" w="18px" h="18px" viewBox="0 0 24 24" fill="none" stroke="#43A047" strokeWidth="2.5">
+  <Box as="svg" w="18px" h="18px" viewBox="0 0 24 24" fill="none" stroke="var(--chakra-colors-accent-teal)" strokeWidth="2.5">
     <polyline points="20 6 9 17 4 12" />
   </Box>
 );
 
 const AdmissionPage = () => (
   <PageLayout>
-    <PageBanner
-      title="Admission Process"
-      bgImage="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&q=80&auto=format&fit=crop"
-      breadcrumbs={[
-        { label: "Home", href: "/" },
-        { label: "Admission Process" },
-      ]}
-    />
+    <PageBanner {...PAGE_BANNERS.admission} />
 
-    <Container maxW="1400px" px={{ base: 4, md: 6, lg: 8 }} py={{ base: 10, md: 14 }}>
-      <Grid templateColumns={{ base: "1fr", lg: "1fr 320px" }} gap={{ base: 10, lg: 12 }}>
-        <GridItem>
-          <VStack align="stretch" spacing={8}>
+    <PageContent sidebar={<PageSidebar popularPages={POPULAR_PAGES_ADMISSION} departments={DEPARTMENTS_ADMISSION} />}>
+      <VStack align="stretch" spacing={layout.contentStack}>
             <Box
               borderRadius="20px"
               overflow="hidden"
-              bg="linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)"
+              bg={colors.gradient.brand}
               p={{ base: 6, md: 8 }}
               position="relative"
             >
@@ -74,7 +65,7 @@ const AdmissionPage = () => (
             <Box
               borderRadius="24px"
               overflow="hidden"
-              bg="linear-gradient(180deg, #2d2451 0%, #1e1838 100%)"
+              bg={colors.gradient.brandVertical}
               p={{ base: 5, md: 6 }}
             >
               <VStack align="stretch" spacing={4}>
@@ -99,8 +90,7 @@ const AdmissionPage = () => (
                             px={3}
                             py={1}
                             borderRadius="full"
-                            bg="#FFB300"
-                            color="#0B1F4D"
+                            variant="gold"
                             fontSize="xs"
                             fontWeight="700"
                           >
@@ -119,23 +109,18 @@ const AdmissionPage = () => (
 
             <Box
               p={{ base: 6, md: 8 }}
-              borderRadius="24px"
-              bg="rgba(255,255,255,0.7)"
-              backdropFilter="blur(12px)"
-              border="1px solid rgba(255,255,255,0.6)"
-              boxShadow="0 8px 32px rgba(11, 31, 77, 0.06)"
-              sx={{ WebkitBackdropFilter: "blur(12px)" }}
+              {...glassCard}
             >
-              <Text fontSize="lg" fontWeight="700" color="#0B1F4D" mb={4}>
+              <Text fontSize="lg" fontWeight="700" color="brand.500" mb={4}>
                 Admission Procedure Details
               </Text>
               <VStack align="stretch" spacing={4}>
-                <Text fontSize="sm" color="#475569" lineHeight="1.85">
+                <Text fontSize="sm" color="text.secondary" lineHeight="1.85">
                   Admission to all programs is granted as per the norms prescribed by Bhakta Kavi Narsinh Mehta University and the State Government of Gujarat. Candidates must submit the application form along with all required documents within the stipulated admission period.
                 </Text>
-                <Text fontSize="sm" color="#475569" lineHeight="1.85">
+                <Text fontSize="sm" color="text.secondary" lineHeight="1.85">
                   An application fee of{" "}
-                  <Text as="span" fontWeight="700" color="#0B1F4D">
+                  <Text as="span" fontWeight="700" color="brand.500">
                     Rs. 100/-
                   </Text>{" "}
                   is payable in cash at the time of submission of the admission form.
@@ -145,35 +130,24 @@ const AdmissionPage = () => (
 
             <Box
               p={{ base: 6, md: 8 }}
-              borderRadius="24px"
-              bg="rgba(255,255,255,0.7)"
-              backdropFilter="blur(12px)"
-              border="1px solid rgba(255,255,255,0.6)"
-              boxShadow="0 8px 32px rgba(11, 31, 77, 0.06)"
-              sx={{ WebkitBackdropFilter: "blur(12px)" }}
+              {...glassCard}
             >
-              <Text fontSize="lg" fontWeight="700" color="#0B1F4D" mb={5}>
+              <Text fontSize="lg" fontWeight="700" color="brand.500" mb={5}>
                 Required Documents
               </Text>
               <List spacing={3}>
                 {ADMISSION_DOCUMENTS.map((doc) => (
                   <ListItem key={doc} display="flex" alignItems="flex-start">
                     <ListIcon as={() => <CheckIcon />} mt={0.5} />
-                    <Text fontSize="sm" color="#475569" lineHeight="1.7">
+                    <Text fontSize="sm" color="text.secondary" lineHeight="1.7">
                       {doc}
                     </Text>
                   </ListItem>
                 ))}
               </List>
             </Box>
-          </VStack>
-        </GridItem>
-
-        <GridItem>
-          <PageSidebar popularPages={POPULAR_PAGES_ADMISSION} departments={DEPARTMENTS_ADMISSION} />
-        </GridItem>
-      </Grid>
-    </Container>
+      </VStack>
+    </PageContent>
   </PageLayout>
 );
 

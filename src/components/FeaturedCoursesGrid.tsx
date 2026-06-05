@@ -1,24 +1,20 @@
 import {
   Box,
-  Container,
   Grid,
   Text,
   Image,
   Flex,
   Badge,
   Button,
-  VStack,
 } from "@chakra-ui/react";
 import { COURSES } from "../data/siteContent";
+import { colors, glassCard, layout } from "../theme/tokens";
+import Section from "./shared/Section";
+import SectionHeader from "./shared/SectionHeader";
+import PageContainer from "./shared/PageContainer";
 
 const FeaturedCoursesGrid = () => (
-  <Box
-    as="section"
-    id="courses"
-    position="relative"
-    py={{ base: 12, md: 16, lg: 20 }}
-    bg="#F7FAFC"
-  >
+  <Section id="courses" bg="bg.canvas" position="relative" contained={false}>
     <Box
       position="absolute"
       inset={0}
@@ -38,47 +34,25 @@ const FeaturedCoursesGrid = () => (
       pointerEvents="none"
     />
 
-    <Container maxW="1400px" px={{ base: 4, md: 6, lg: 8 }} position="relative">
-      <VStack align="flex-start" spacing={3} mb={{ base: 8, md: 12 }}>
-        <Badge
-          px={4}
-          py={1.5}
-          borderRadius="full"
-          bg="rgba(255,255,255,0.7)"
-          color="#0B1F4D"
-          fontSize="xs"
-          fontWeight="600"
-          border="1px solid rgba(0, 212, 255, 0.3)"
-          boxShadow="0 0 20px rgba(0, 212, 255, 0.1)"
-        >
-          Academic Programs
-        </Badge>
-        <Text
-          fontSize={{ base: "xl", md: "2xl" }}
-          fontWeight="700"
-          color="#0F172A"
-          maxW="600px"
-        >
-          Explore our undergraduate, postgraduate, and diploma programs designed for future-ready careers.
-        </Text>
-      </VStack>
+    <PageContainer position="relative">
+      <SectionHeader
+        badge="Academic Programs"
+        title="Featured Courses"
+        subtitle="Explore our undergraduate, postgraduate, and diploma programs designed for future-ready careers."
+        align="left"
+      />
 
       <Grid
         templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
-        gap={{ base: 6, md: 8 }}
+        gap={layout.gridGap}
       >
         {COURSES.map((course, index) => (
           <Box
             key={course.id}
             role="article"
-            borderRadius="24px"
             overflow="hidden"
-            bg="rgba(255, 255, 255, 0.65)"
-            backdropFilter="blur(12px)"
-            border="1px solid rgba(255, 255, 255, 0.7)"
-            boxShadow="0 8px 32px rgba(11, 31, 77, 0.06)"
+            {...glassCard}
             transition="all 0.35s ease"
-            sx={{ WebkitBackdropFilter: "blur(12px)" }}
             gridColumn={
               index === COURSES.length - 1
                 ? { base: "span 1", sm: "span 2", lg: "2 / 3" }
@@ -87,7 +61,7 @@ const FeaturedCoursesGrid = () => (
             _hover={{
               transform: "translateY(-8px)",
               boxShadow: "0 20px 48px rgba(11, 31, 77, 0.12), 0 0 32px rgba(0, 212, 255, 0.08)",
-              borderColor: "rgba(0, 212, 255, 0.3)",
+              borderColor: colors.border.accent,
             }}
           >
             <Box position="relative" overflow="hidden" h={{ base: "200px", md: "220px" }}>
@@ -115,7 +89,7 @@ const FeaturedCoursesGrid = () => (
                 borderRadius="full"
                 bg="rgba(255,255,255,0.85)"
                 backdropFilter="blur(8px)"
-                color="#0B1F4D"
+                color="brand.500"
                 fontSize="2xs"
                 fontWeight="700"
                 textTransform="uppercase"
@@ -129,7 +103,7 @@ const FeaturedCoursesGrid = () => (
               <Text
                 fontSize={{ base: "md", md: "lg" }}
                 fontWeight="700"
-                color="#0F172A"
+                color="text.primary"
                 lineHeight="1.4"
                 mb={1}
               >
@@ -138,7 +112,7 @@ const FeaturedCoursesGrid = () => (
               <Text
                 fontSize="sm"
                 fontWeight="600"
-                bgGradient="linear(to-r, #00D4FF, #00BFA5)"
+                bgGradient={`linear(to-r, ${colors.accent.cyan}, ${colors.accent.teal})`}
                 bgClip="text"
                 sx={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
                 mb={4}
@@ -147,10 +121,10 @@ const FeaturedCoursesGrid = () => (
               </Text>
 
               <Flex justify="space-between" align="center" mb={4}>
-                <Text fontSize="xs" color="#64748B" fontWeight="500">
+                <Text fontSize="xs" color="text.muted" fontWeight="500">
                   Duration: {course.duration}
                 </Text>
-                <Text fontSize="xs" color="#64748B" fontWeight="500">
+                <Text fontSize="xs" color="text.muted" fontWeight="500">
                   {course.seats}
                 </Text>
               </Flex>
@@ -158,17 +132,13 @@ const FeaturedCoursesGrid = () => (
               <Button
                 w="100%"
                 size="sm"
-                fontWeight="600"
-                borderRadius="xl"
                 variant="outline"
-                borderColor="rgba(11, 31, 77, 0.15)"
-                color="#0B1F4D"
+                borderColor={colors.border.medium}
                 _hover={{
-                  bg: "linear-gradient(135deg, #0B1F4D 0%, #132B67 100%)",
+                  bg: colors.gradient.brand,
                   color: "white",
                   borderColor: "transparent",
                 }}
-                transition="all 0.25s ease"
               >
                 View Details
               </Button>
@@ -176,8 +146,8 @@ const FeaturedCoursesGrid = () => (
           </Box>
         ))}
       </Grid>
-    </Container>
-  </Box>
+    </PageContainer>
+  </Section>
 );
 
 export default FeaturedCoursesGrid;

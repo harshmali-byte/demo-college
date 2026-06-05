@@ -8,31 +8,88 @@ export const CONTACT = {
 
 export const COLLEGE = {
   name: "College of Computer, Science & Information Technology",
-  shortName: "JK",
-  brandTitle: "JK JUNAGADH",
+  shortName: "KJ",
+  brandTitle: "KJ JUNAGADH",
   location: "Junagadh",
   fullName: "College of Computer, Science & Information Technology - Junagadh",
   copyrightText:
-    "College of Computer, Science & Information Technology JK-Junagadh.",
+    "College of Computer, Science & Information Technology KJ-Junagadh.",
   about:
     "Graduate, Post Graduate and Diploma Education in emerging area of Pure Science, Bioscience, Computer Science and Medical Laboratory Technology..",
 };
 
-export const NAV_LINKS = [
+export type NavSubItem = { label: string; href: string };
+
+export type NavMenuItem = {
+  label: string;
+  href: string;
+  children?: NavSubItem[];
+};
+
+export const NAV_MENU: NavMenuItem[] = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Departments", href: "/#departments" },
-  { label: "Courses", href: "/courses" },
-  { label: "Admission", href: "/admission" },
-  { label: "Gallery", href: "/#gallery" },
+  {
+    label: "About Us",
+    href: "/about",
+    children: [
+      { label: "WELCOME TO COLLEGE", href: "/about" },
+      { label: "ABOUT COLLEGE", href: "/about" },
+      { label: "MISSION/VISION", href: "/about" },
+      { label: "MANAGEMENT-SIET", href: "/about#management" },
+    ],
+  },
+  {
+    label: "Departments",
+    href: "/departments",
+    children: [
+      { label: "INFORMATION TECHNOLOGY", href: "/departments/it" },
+      { label: "BIOSCIENCE", href: "/departments/bioscience" },
+      { label: "CHEMISTRY", href: "/departments/chemistry" },
+      { label: "FACULTIES", href: "/about" },
+    ],
+  },
+  {
+    label: "Courses",
+    href: "/courses",
+    children: [
+      { label: "M.SC.(IT & CA)", href: "/courses" },
+      { label: "M.SC.(MICRO.)", href: "/courses" },
+      { label: "M.SC.(CHEM.)", href: "/courses" },
+      { label: "D.M.L.T.", href: "/courses" },
+      { label: "B.SC.(IT)", href: "/courses" },
+      { label: "B.C.A.", href: "/courses" },
+      { label: "B.SC.(MICRO.)", href: "/courses" },
+      { label: "B.SC.(CHEM.)", href: "/courses" },
+    ],
+  },
+  {
+    label: "Admission",
+    href: "/admission",
+    children: [
+      { label: "ADMISSION PROCESS", href: "/admission" },
+      { label: "RULES & REGULATIONS", href: "/admission" },
+    ],
+  },
+  {
+    label: "Gallery",
+    href: "/#gallery",
+    children: [
+      { label: "COLLEGE INFRASTRUCTURE", href: "/#facilities" },
+      { label: "CO-CURRICULAR ACTIVITIES", href: "/#gallery" },
+    ],
+  },
   { label: "Rankers", href: "/#rankers" },
   { label: "Support", href: "/contact" },
   { label: "Contact Us", href: "/contact" },
 ];
 
+/** @deprecated Use NAV_MENU — kept for simple link lists */
+export const NAV_LINKS = NAV_MENU.map(({ label, href }) => ({ label, href }));
+
 export const SITEMAP_LINKS_LEFT = [
   { label: "Home", href: "/" },
   { label: "About us", href: "/about" },
+  { label: "Departments", href: "/departments" },
   { label: "Courses", href: "/courses" },
   { label: "Admission", href: "/admission" },
 ];
@@ -73,7 +130,7 @@ export const COURSES = [
     duration: "3 Years",
     seats: "120 Seats",
     image:
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa37?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80&auto=format&fit=crop",
     category: "Computer Science",
   },
   {
@@ -93,7 +150,7 @@ export const COURSES = [
     duration: "3 Years",
     seats: "90 Seats",
     image:
-      "https://images.unsplash.com/photo-1532187863486-abf9db5811c6?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80&auto=format&fit=crop",
     category: "Pure Science",
   },
   {
@@ -113,7 +170,7 @@ export const COURSES = [
     duration: "2 Years",
     seats: "30 Seats",
     image:
-      "https://images.unsplash.com/photo-1530026405186-ed07f4a203ba?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80&auto=format&fit=crop",
     category: "Bioscience",
   },
   {
