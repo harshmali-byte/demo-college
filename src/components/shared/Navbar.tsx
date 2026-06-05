@@ -25,7 +25,7 @@ import PageContainer from "./PageContainer";
 
 const Logo = () => (
   <Link as={RouterLink} to="/" _hover={{ textDecoration: "none" }} flexShrink={0}>
-    <KJLogo size={{ base: "40px", md: "48px" }} />
+    <KJLogo size={{ base: "40px", md: "48px" }} filter="brightness(1.05)" />
   </Link>
 );
 
@@ -43,61 +43,46 @@ const isNavItemActive = (pathname: string, item: NavMenuItem) => {
   return item.children?.some((child) => pathMatches(pathname, child.href)) ?? false;
 };
 
+const submenuLinkStyle = {
+  display: "block",
+  px: 2,
+  py: 2.5,
+  fontSize: "10px",
+  fontWeight: "800",
+  color: "white",
+  textTransform: "uppercase" as const,
+  letterSpacing: "0.04em",
+  lineHeight: "1.4",
+  whiteSpace: "normal" as const,
+  wordBreak: "break-word" as const,
+  textAlign: "center" as const,
+  _hover: { bg: "rgba(255,255,255,0.1)", color: "accent.gold", textDecoration: "none" },
+};
+
 const SubmenuPanel = ({
   items,
   onNavigate,
-  wide,
 }: {
   items: NavMenuItem["children"];
   onNavigate?: () => void;
-  wide?: boolean;
 }) => {
   if (!items?.length) return null;
 
   return (
     <Box
-      bg="brand.500"
-      minW={wide ? "268px" : "220px"}
-      w="max-content"
-      boxShadow="0 14px 44px rgba(11, 31, 77, 0.4)"
+      bg="brand.900"
+      w="100%"
+      boxShadow="0 14px 44px rgba(0, 0, 0, 0.35)"
+      border="1px solid rgba(255,255,255,0.08)"
     >
       {items.map((child, index) => (
         <Box key={child.label}>
           {child.href.startsWith("/#") ? (
-            <Link
-              href={child.href}
-              display="block"
-              px={5}
-              py={3}
-              fontSize="11px"
-              fontWeight="800"
-              color="white"
-              textTransform="uppercase"
-              letterSpacing="0.05em"
-              lineHeight="1.35"
-              whiteSpace="nowrap"
-              _hover={{ bg: "rgba(255,255,255,0.1)", color: "accent.gold", textDecoration: "none" }}
-              onClick={onNavigate}
-            >
+            <Link href={child.href} {...submenuLinkStyle} onClick={onNavigate}>
               {child.label}
             </Link>
           ) : (
-            <Link
-              as={RouterLink}
-              to={child.href}
-              display="block"
-              px={5}
-              py={3}
-              fontSize="11px"
-              fontWeight="800"
-              color="white"
-              textTransform="uppercase"
-              letterSpacing="0.05em"
-              lineHeight="1.35"
-              whiteSpace="nowrap"
-              _hover={{ bg: "rgba(255,255,255,0.1)", color: "accent.gold", textDecoration: "none" }}
-              onClick={onNavigate}
-            >
+            <Link as={RouterLink} to={child.href} {...submenuLinkStyle} onClick={onNavigate}>
               {child.label}
             </Link>
           )}
@@ -131,7 +116,7 @@ const DesktopNavItem = ({
       fontWeight="800"
       letterSpacing="0.08em"
       textTransform="uppercase"
-      color={highlight ? "accent.gold" : "brand.500"}
+      color={highlight ? "accent.gold" : "rgba(255,255,255,0.88)"}
       transition="color 0.2s ease"
       whiteSpace="nowrap"
     >
@@ -139,12 +124,14 @@ const DesktopNavItem = ({
     </Text>
   );
 
+  const linkHover = { textDecoration: "none", "& span": { color: "accent.gold" } };
+
   const trigger = item.href.startsWith("/#") ? (
-    <Link href={item.href} display="block" px={{ lg: 2.5, xl: 3.5 }} py={2.5} _hover={{ textDecoration: "none" }}>
+    <Link href={item.href} display="block" px={{ lg: 2.5, xl: 3.5 }} py={2.5} _hover={linkHover}>
       {label}
     </Link>
   ) : (
-    <Link as={RouterLink} to={item.href} display="block" px={{ lg: 2.5, xl: 3.5 }} py={2.5} _hover={{ textDecoration: "none" }}>
+    <Link as={RouterLink} to={item.href} display="block" px={{ lg: 2.5, xl: 3.5 }} py={2.5} _hover={linkHover}>
       {label}
     </Link>
   );
@@ -153,19 +140,18 @@ const DesktopNavItem = ({
     return <Box flexShrink={0}>{trigger}</Box>;
   }
 
-  const wideMenu = item.label === "Courses";
-
   return (
     <Box
       position="relative"
       flexShrink={0}
+      w="fit-content"
       onMouseEnter={() => setOpenMenu(item.label)}
       onMouseLeave={() => setOpenMenu(null)}
     >
       {trigger}
       {isOpen && (
-        <Box position="absolute" top="100%" left={0} pt={1} zIndex={1200}>
-          <SubmenuPanel items={item.children} wide={wideMenu} />
+        <Box position="absolute" top="100%" left={0} w="100%" pt={1} zIndex={1200}>
+          <SubmenuPanel items={item.children} />
         </Box>
       )}
     </Box>
@@ -237,7 +223,7 @@ const MobileNavItem = ({
         <Text fontSize="xs">{expanded ? "−" : "+"}</Text>
       </Flex>
       <Collapse in={expanded}>
-        <Box bg="brand.500" borderRadius="lg" overflow="hidden" mb={2}>
+        <Box bg="brand.800" borderRadius="lg" overflow="hidden" mb={2}>
           {item.children!.map((child, index) => (
             <Box key={child.label}>
               {child.href.startsWith("/#") ? (
@@ -302,10 +288,11 @@ const Navbar = () => {
         position="sticky"
         top={0}
         zIndex={1100}
-        bg="white"
+        bg="brand.800"
+        color="white"
         borderBottom="1px solid"
-        borderColor={scrolled ? colors.border.medium : colors.border.light}
-        boxShadow={scrolled ? "0 8px 32px rgba(11, 31, 77, 0.08)" : "none"}
+        borderColor="rgba(255,255,255,0.06)"
+        boxShadow={scrolled ? "0 8px 32px rgba(0, 0, 0, 0.28)" : "none"}
         transition="all 0.3s ease"
         overflow="visible"
       >
@@ -341,34 +328,46 @@ const Navbar = () => {
                   px={{ lg: 2.5, xl: 3 }}
                   py={1.5}
                   borderRadius="xl"
-                  bg={colors.surface.muted}
-                  border={`1px solid ${colors.border.light}`}
+                  bg="rgba(255,255,255,0.08)"
+                  border="1px solid rgba(255,255,255,0.12)"
+                  transition="all 0.2s ease"
+                  _hover={{ bg: "rgba(255,255,255,0.12)", borderColor: "rgba(255, 179, 0, 0.35)" }}
                 >
                   <Flex
                     w="32px"
                     h="32px"
                     borderRadius="full"
-                    bg={colors.gradient.accent}
+                    bg="accent.gold"
                     align="center"
                     justify="center"
                     flexShrink={0}
                   >
-                    <Box as="svg" w="14px" h="14px" viewBox="0 0 24 24" fill="white">
+                    <Box as="svg" w="14px" h="14px" viewBox="0 0 24 24" fill="brand.800">
                       <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" />
                     </Box>
                   </Flex>
                   <VStack align="flex-start" spacing={0} display={{ base: "none", xl: "flex" }}>
-                    <Text fontSize="2xs" fontWeight="600" color="text.muted" textTransform="uppercase" letterSpacing="wider">
+                    <Text fontSize="2xs" fontWeight="600" color="rgba(255,255,255,0.65)" textTransform="uppercase" letterSpacing="wider">
                       Contact Us
                     </Text>
-                    <Text fontSize="sm" fontWeight="700" color="brand.500">
+                    <Text fontSize="sm" fontWeight="700" color="white">
                       {CONTACT.primaryPhone}
                     </Text>
                   </VStack>
                 </HStack>
               </Link>
 
-              <Button size="sm" variant="accent" px={{ lg: 4, xl: 5 }} fontSize="xs">
+              <Button
+                size="sm"
+                px={{ lg: 4, xl: 5 }}
+                fontSize="xs"
+                fontWeight="700"
+                bg="rgba(255,255,255,0.1)"
+                color="white"
+                border="1px solid rgba(255,255,255,0.2)"
+                _hover={{ bg: "rgba(255,255,255,0.16)", borderColor: "accent.gold", color: "accent.gold" }}
+                _active={{ bg: "rgba(255,255,255,0.08)" }}
+              >
                 eGyan
               </Button>
               <Button size="sm" variant="gold" px={{ lg: 4, xl: 5 }} fontSize="xs">
@@ -381,7 +380,9 @@ const Navbar = () => {
               display={{ base: "flex", lg: "none" }}
               variant="ghost"
               ml="auto"
+              color="white"
               onClick={onOpen}
+              _hover={{ bg: "rgba(255,255,255,0.1)", color: "accent.gold" }}
               icon={
                 <Box as="svg" w="22px" h="22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <line x1="3" y1="6" x2="21" y2="6" />
@@ -406,7 +407,13 @@ const Navbar = () => {
               ))}
             </VStack>
             <VStack mt={8} spacing={3} align="stretch">
-              <Button variant="accent" borderRadius="xl">
+              <Button
+                borderRadius="xl"
+                bg="brand.800"
+                color="white"
+                border="1px solid rgba(255,255,255,0.2)"
+                _hover={{ bg: "brand.700", borderColor: "accent.gold", color: "accent.gold" }}
+              >
                 eGyan
               </Button>
               <Button variant="gold" borderRadius="xl">
